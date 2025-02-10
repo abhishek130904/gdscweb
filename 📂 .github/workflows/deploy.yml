@@ -1,1 +1,16 @@
+name: Deploy Application  # Workflow Name
+
+on: [push]  # Runs this workflow on every push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Uses GitHub's Linux server
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Clones your repo into the GitHub runner
+
+      - name: Use GitHub Secret
+        run: echo "My secret is ${{ secrets.GDSC_API }}"  # Don't print in production
+        env:
+          GITHUB_API_KEY: ${{ secrets.GDSC_API }}
 
